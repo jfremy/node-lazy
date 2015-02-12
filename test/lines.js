@@ -95,3 +95,19 @@ exports.blankLine = function () {
 	l.emit('data', data);
 	l.emit('end');
 };
+
+exports.firstBlankLine = function() {
+	var data = '\nabc\n';
+	var l = Lazy();
+	l.lines.forEach(function(l) { assert.ok(l); });
+	l.emit('data', data);
+	l.emit('end');
+}
+
+exports.noFinalCarriageReturn = function() {
+	var data = '\nabc\ndef';
+	var l = Lazy();
+	l.lines.join(function(x) { assert.eql(x.join('\n'), data); });
+	l.emit('data', data);
+	l.emit('end');
+}

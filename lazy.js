@@ -328,7 +328,8 @@ Lazy.range = function () {
 
 var mergeBuffers = function mergeBuffers(buffers) {
   // We expect buffers to be a non-empty Array
-  if (!buffers || !Array.isArray(buffers) || !buffers.length) return;
+  if (!buffers || !Array.isArray(buffers)) return;
+  if (!buffers.length) return new Buffer(0);
 
   var finalBufferLength, finalBuffer, currentBuffer, currentSize = 0;
 
